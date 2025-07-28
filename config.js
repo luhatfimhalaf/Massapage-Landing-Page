@@ -5,7 +5,7 @@ const MASSAPAGE_CONFIG = {
     // WhatsApp Configuration
     whatsapp: {
         // Replace with your actual WhatsApp number (format: country code + number without + sign)
-        number: '6281234567890', // Example: Indonesian number
+        number: '62895804328400', // Massapage WhatsApp number
         
         // Default messages for different scenarios
         messages: {

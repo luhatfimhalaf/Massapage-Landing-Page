@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnalytics();
     initPortfolioFilter();
     initPortfolioTracking();
+    initPortfolioHoverEffects();
     initWhatsAppAndBooklet();
 });
 
@@ -300,7 +301,7 @@ function showErrors(errors) {
         errorDiv = document.createElement('div');
         errorDiv.className = 'form-errors';
         errorDiv.style.cssText = `
-            background: #ff4757;
+            background: #4A5FFF;
             color: white;
             padding: 1rem;
             border-radius: 8px;
@@ -366,7 +367,7 @@ function showSuccess(message) {
     const successDiv = document.createElement('div');
     successDiv.className = 'success-message';
     successDiv.style.cssText = `
-        background: #2ed573;
+        background: #6B73FF;
         color: white;
         padding: 1rem;
         border-radius: 8px;
@@ -669,33 +670,26 @@ function initAboutUsTracking() {
     
     // Portfolio Filter Functionality
     function initPortfolioFilter() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
         
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+        // Initialize filter counts
+        updateFilterCounts();
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
                 const filter = this.getAttribute('data-filter');
                 
-                // Update active button
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Filter portfolio items
-                portfolioItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    
-                    if (filter === 'all' || category === filter) {
-                        item.classList.remove('hidden');
-                        item.style.display = 'block';
-                    } else {
-                        item.classList.add('hidden');
-                        setTimeout(() => {
-                            if (item.classList.contains('hidden')) {
-                                item.style.display = 'none';
-                            }
-                        }, 500);
-                    }
+                // Update active button state
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
                 });
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                
+                // Filter portfolio items with smooth animation
+                filterPortfolioItems(filter, portfolioItems);
                 
                 // Track filter usage
                 trackEvent('portfolio_filter', {
@@ -705,46 +699,154 @@ function initAboutUsTracking() {
         });
     }
     
-    // Portfolio Project View/Demo Tracking
-    function initPortfolioTracking() {
-        // Track view button clicks
-        document.querySelectorAll('.btn-view').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const project = this.getAttribute('data-project');
-                trackEvent('portfolio_view', {
-                    project: project
-                });
+    function updateFilterCounts() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            const filter = button.getAttribute('data-filter');
+            const countElement = button.querySelector('.filter-count');
+            
+            if (countElement) {
+                if (filter === 'all') {
+                    countElement.textContent = portfolioItems.length;
+                } else {
+                    const count = document.querySelectorAll(`.portfolio-item[data-category="${filter}"]`).length;
+                    countElement.textContent = count;
+                }
+            }
+        });
+    }
+    
+    function filterPortfolioItems(filter, items) {
+        // First phase: fade out items that should be hidden
+        items.forEach(item => {
+            const category = item.getAttribute('data-category');
+            const shouldShow = filter === 'all' || category === filter;
+            
+            if (!shouldShow && !item.classList.contains('fade-out')) {
+                item.classList.add('fade-out');
+                item.classList.remove('fade-in');
+            }
+        });
+        
+        // Second phase: after fade out animation, show items that should be visible
+        setTimeout(() => {
+            items.forEach(item => {
+                const category = item.getAttribute('data-category');
+                const shouldShow = filter === 'all' || category === filter;
                 
-                // Simulate opening project details modal
-                console.log(`Opening project details for: ${project}`);
+                if (shouldShow) {
+                    item.classList.remove('fade-out');
+                    item.classList.add('fade-in');
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                }
+            });
+            
+            // Trigger AOS refresh for newly visible items
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }, 300); // Match the CSS transition duration
+    }
+    
+    // Portfolio Item Interactions
+    function initPortfolioTracking() {
+        // Track project views
+        document.querySelectorAll('.btn-view').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectTitle = this.closest('.portfolio-card').querySelector('h3').textContent;
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'project_view', {
+                        'project_name': projectTitle,
+                        'event_category': 'portfolio'
+                    });
+                }
+                
+                // Add your view logic here
+                console.log('Viewing project:', projectTitle);
             });
         });
         
-        // Track demo button clicks
-        document.querySelectorAll('.btn-demo').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const project = this.getAttribute('data-project');
-                trackEvent('portfolio_demo', {
-                    project: project
-                });
+        // Track demo clicks
+        document.querySelectorAll('.btn-demo').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectTitle = this.closest('.portfolio-card').querySelector('h3').textContent;
                 
-                // Simulate opening demo in new tab
-                console.log(`Opening demo for: ${project}`);
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'project_demo', {
+                        'project_name': projectTitle,
+                        'event_category': 'portfolio'
+                    });
+                }
+                
+                // Add your demo logic here
+                console.log('Demo for project:', projectTitle);
             });
         });
         
         // Track load more button
         const loadMoreBtn = document.querySelector('.load-more-btn');
         if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', function() {
-                trackEvent('portfolio_load_more');
+            loadMoreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                // Simulate loading more portfolio items
-                console.log('Loading more portfolio items...');
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'load_more_portfolio', {
+                        'event_category': 'portfolio'
+                    });
+                }
+                
+                // Add your load more logic here
+                console.log('Load more portfolio items');
             });
         }
     }
-
+    
+    // Portfolio Card Hover Effects
+    function initPortfolioHoverEffects() {
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+        
+        portfolioCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // Add subtle parallax effect to the image
+                const image = this.querySelector('.portfolio-placeholder');
+                if (image) {
+                    image.style.transform = 'scale(1.05)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                // Reset image transform
+                const image = this.querySelector('.portfolio-placeholder');
+                if (image) {
+                    image.style.transform = 'scale(1)';
+                }
+            });
+            
+            // Add click tracking for the entire card
+            card.addEventListener('click', function(e) {
+                // Only track if not clicking on action buttons
+                if (!e.target.closest('.portfolio-actions')) {
+                    const projectTitle = this.querySelector('h3').textContent;
+                    
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'portfolio_card_click', {
+                            'project_name': projectTitle,
+                            'event_category': 'portfolio'
+                        });
+                    }
+                }
+            });
+        });
+    }
+    
     // Track client logo interactions with enhanced functionality
     document.querySelectorAll('.client-logo').forEach((logo, index) => {
         // Add click tracking
