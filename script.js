@@ -732,7 +732,7 @@ function initAboutUsTracking() {
         const loadMoreBtn = document.querySelector('.load-more-btn');
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', function(e) {
-                e.preventDefault();
+                // Don't prevent default - allow normal navigation
                 
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'load_more_portfolio', {
@@ -740,8 +740,8 @@ function initAboutUsTracking() {
                     });
                 }
                 
-                // Add your load more logic here
-                console.log('Load more portfolio items');
+                // Allow normal navigation to portfolio.html
+                console.log('Navigating to portfolio page');
             });
         }
     }
