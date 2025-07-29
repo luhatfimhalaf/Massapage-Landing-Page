@@ -2486,6 +2486,60 @@ footer {
     color: #6C757D;
 }
 
+/* Social Media Styles */
+.social-media {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-media h4 {
+    color: #4A5FFF;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(74, 95, 255, 0.1);
+    border: 1px solid rgba(74, 95, 255, 0.3);
+    border-radius: 8px;
+    color: #6C757D;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.social-link:hover {
+    background: rgba(74, 95, 255, 0.2);
+    border-color: #4A5FFF;
+    color: #4A5FFF;
+    transform: translateY(-2px);
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #e6683c;
+    color: white;
+}
+
+.social-link svg {
+    flex-shrink: 0;
+}
+
+.social-link span {
+    font-weight: 500;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero h1 {
@@ -2622,6 +2676,17 @@ footer {
     .tag {
         padding: 5px 10px;
         font-size: 10px;
+    }
+    
+    /* Social media responsive */
+    .social-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .social-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
     }
 }
 
