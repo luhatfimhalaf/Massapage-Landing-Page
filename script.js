@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPortfolioFilter();
     initPortfolioTracking();
     initPortfolioHoverEffects();
-    initWhatsAppAndBooklet();
+    initRemainingButtons();
 });
 
 /**
@@ -86,7 +86,7 @@ function initIntersectionObserver() {
     }, observerOptions);
 
     // Observe all animated elements
-    document.querySelectorAll('.service-card, .feature-card, .process-step, .client-logo, .stat-item, .portfolio-card').forEach(element => {
+    document.querySelectorAll('.service-card, .feature-card, .process-step, .stat-item, .portfolio-card').forEach(element => {
         element.classList.add('fade-in');
         observer.observe(element);
     });
@@ -389,153 +389,38 @@ function showSuccess(message) {
 }
 
 /**
- * Initialize WhatsApp and Booklet functionality
+ * Initialize remaining button functionality (portfolio buttons only)
  */
-function initWhatsAppAndBooklet() {
-    // Get configuration (fallback to default values if config.js is not loaded)
-    const config = window.MASSAPAGE_CONFIG || {
-        whatsapp: {
-            number: '6281234567890',
-            messages: {
-                general: 'Halo Massapage.id! Saya tertarik untuk konsultasi mengenai layanan digital transformation. Mohon informasi lebih lanjut.',
-                service: 'Halo Massapage.id! Saya tertarik dengan layanan {serviceName}. Bisa tolong berikan informasi detail mengenai:\n1. Proses pengerjaan\n2. Timeline\n3. Harga\n4. Portfolio terkait\n\nTerima kasih!',
-                consultation: 'Halo Massapage.id! Saya ingin konsultasi gratis mengenai kebutuhan digital transformation untuk bisnis saya. Kapan waktu yang tepat untuk berdiskusi?'
-            }
-        },
-        booklet: {
-            url: 'https://drive.google.com/file/d/YOUR_BOOKLET_FILE_ID/view'
-        }
-    };
-    
-    // Function to open WhatsApp
-    function openWhatsApp(message = '') {
-        const finalMessage = message || config.whatsapp.messages.general;
-        const encodedMessage = encodeURIComponent(finalMessage);
-        const whatsappUrl = `https://wa.me/${config.whatsapp.number}?text=${encodedMessage}`;
-        window.open(whatsappUrl, '_blank');
-        
-        // Track WhatsApp click
-        trackEvent('whatsapp_contact', {
-            message: finalMessage,
-            source: 'landing_page'
-        });
-    }
-    
-    // Function to open booklet
-    function openBooklet() {
-        if (config.booklet.url.includes('YOUR_BOOKLET_FILE_ID')) {
-            alert('Booklet URL belum dikonfigurasi. Silakan update file config.js dengan URL Google Drive yang benar.');
-            return;
-        }
-        
-        window.open(config.booklet.url, '_blank');
-        
-        // Track booklet view
-        trackEvent('booklet_view', {
-            source: 'landing_page'
-        });
-    }
-    
-    // Add event listeners to buttons with data-action attributes
-    document.querySelectorAll('[data-action]').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const action = this.getAttribute('data-action');
-            
-            if (action === 'whatsapp') {
-                const defaultMessage = config.whatsapp.messages.consultation;
-                openWhatsApp(defaultMessage);
-            } else if (action === 'booklet') {
-                openBooklet();
-            }
-        });
-    });
-    
-    // Add event listeners to all CTA buttons
-    document.querySelectorAll('.cta-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Skip if already handled by data-action
-            if (this.hasAttribute('data-action')) return;
-            
-            const buttonText = this.textContent.toLowerCase();
-            
-            // Check if button is for consultation/contact
-            if (buttonText.includes('konsultasi') || buttonText.includes('kontak') || 
-                buttonText.includes('hubungi') || buttonText.includes('chat')) {
-                
-                const serviceName = this.closest('.service-card')?.querySelector('h3')?.textContent || 'layanan';
-                const message = config.whatsapp.messages.service.replace('{serviceName}', serviceName);
-                openWhatsApp(message);
-            }
-            // Check if button is for portfolio/booklet
-            else if (buttonText.includes('portfolio') || buttonText.includes('lihat') || 
-                     buttonText.includes('pelajari') || buttonText.includes('selengkapnya')) {
-                openBooklet();
-            }
-            // Default to WhatsApp for other buttons
-            else {
-                const serviceName = this.closest('.service-card')?.querySelector('h3')?.textContent || 'layanan';
-                const message = config.whatsapp.messages.service.replace('{serviceName}', serviceName);
-                openWhatsApp(message);
-            }
-        });
-    });
-    
-    // Add event listeners to secondary buttons
-    document.querySelectorAll('.btn-secondary').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Skip if already handled by data-action
-            if (this.hasAttribute('data-action')) return;
-            
-            const buttonText = this.textContent.toLowerCase();
-            
-            if (buttonText.includes('portfolio') || buttonText.includes('lihat')) {
-                openBooklet();
-            } else {
-                openWhatsApp('Halo Massapage.id! Saya ingin mengetahui lebih lanjut tentang layanan Anda.');
-            }
-        });
-    });
-    
-    // Add event listeners to service cards
-    document.querySelectorAll('.service-card').forEach(card => {
-        const serviceButton = card.querySelector('.cta-button');
-        if (serviceButton) {
-            serviceButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const serviceName = card.querySelector('h3')?.textContent || 'layanan';
-                const message = `Halo Massapage.id! Saya tertarik dengan layanan ${serviceName}. Bisa tolong berikan informasi detail mengenai:
-1. Proses pengerjaan
-2. Timeline
-3. Harga
-4. Portfolio terkait
-
-Terima kasih!`;
-                
-                openWhatsApp(message);
-            });
-        }
-    });
-    
-    // Add event listeners to portfolio buttons
+function initRemainingButtons() {
+    // Handle portfolio view and demo buttons for booklet opening
     document.querySelectorAll('.btn-view, .btn-demo').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            openBooklet();
+            
+            // Open booklet URL
+            const bookletUrl = 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view';
+            window.open(bookletUrl, '_blank');
+            
+            // Track booklet view
+            trackEvent('booklet_view', {
+                source: 'portfolio_button'
+            });
         });
     });
     
-    // Add event listeners to filter buttons (redirect to booklet)
-    document.querySelectorAll('.filter-btn').forEach(button => {
+    // Handle secondary buttons that should open booklet
+    document.querySelectorAll('.btn-secondary[data-action="booklet"]').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            openBooklet();
+            
+            // Open booklet URL
+            const bookletUrl = 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view';
+            window.open(bookletUrl, '_blank');
+            
+            // Track booklet view
+            trackEvent('booklet_view', {
+                source: 'secondary_button'
+            });
         });
     });
 }
@@ -569,7 +454,8 @@ function initAnalytics() {
             });
         });
     });
-    
+}
+
 // About Us Animations
 function initAboutUsAnimations() {
     const aboutSection = document.querySelector('.about-us');
@@ -673,12 +559,30 @@ function initAboutUsTracking() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
         
+        // Check if elements exist
+        if (filterButtons.length === 0) {
+            console.warn('No filter buttons found');
+            return;
+        }
+        
+        if (portfolioItems.length === 0) {
+            console.warn('No portfolio items found');
+            return;
+        }
+        
         // Initialize filter counts
         updateFilterCounts();
         
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
+        filterButtons.forEach((button, index) => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
                 const filter = this.getAttribute('data-filter');
+                
+                // Prevent multiple clicks during animation
+                if (this.classList.contains('filtering')) {
+                    return;
+                }
                 
                 // Update active button state
                 filterButtons.forEach(btn => {
@@ -688,13 +592,25 @@ function initAboutUsTracking() {
                 this.classList.add('active');
                 this.setAttribute('aria-selected', 'true');
                 
+                // Add filtering state
+                filterButtons.forEach(btn => btn.classList.add('filtering'));
+                
                 // Filter portfolio items with smooth animation
-                filterPortfolioItems(filter, portfolioItems);
+                filterPortfolioItems(filter, portfolioItems).then(() => {
+                    // Remove filtering state after animation
+                    filterButtons.forEach(btn => btn.classList.remove('filtering'));
+                }).catch(error => {
+                    console.error('Error during filtering:', error);
+                    // Remove filtering state even if there's an error
+                    filterButtons.forEach(btn => btn.classList.remove('filtering'));
+                });
                 
                 // Track filter usage
-                trackEvent('portfolio_filter', {
-                    filter: filter
-                });
+                if (typeof trackEvent === 'function') {
+                    trackEvent('portfolio_filter', {
+                        filter: filter
+                    });
+                }
             });
         });
     }
@@ -719,38 +635,59 @@ function initAboutUsTracking() {
     }
     
     function filterPortfolioItems(filter, items) {
-        // First phase: fade out items that should be hidden
-        items.forEach(item => {
-            const category = item.getAttribute('data-category');
-            const shouldShow = filter === 'all' || category === filter;
+        return new Promise((resolve) => {
+            // Get items to show and hide
+            const itemsToShow = [];
+            const itemsToHide = [];
             
-            if (!shouldShow && !item.classList.contains('fade-out')) {
-                item.classList.add('fade-out');
-                item.classList.remove('fade-in');
-            }
-        });
-        
-        // Second phase: after fade out animation, show items that should be visible
-        setTimeout(() => {
             items.forEach(item => {
                 const category = item.getAttribute('data-category');
                 const shouldShow = filter === 'all' || category === filter;
                 
                 if (shouldShow) {
-                    item.classList.remove('fade-out');
-                    item.classList.add('fade-in');
-                    item.style.display = 'block';
+                    itemsToShow.push(item);
                 } else {
-                    item.style.display = 'none';
+                    itemsToHide.push(item);
+                }
+            });
+            
+            // First phase: fade out items that should be hidden
+            itemsToHide.forEach(item => {
+                if (!item.classList.contains('fade-out')) {
+                    item.classList.add('fade-out');
                     item.classList.remove('fade-in');
                 }
             });
             
-            // Trigger AOS refresh for newly visible items
-            if (typeof AOS !== 'undefined') {
-                AOS.refresh();
-            }
-        }, 300); // Match the CSS transition duration
+            // Second phase: after fade out animation, show items that should be visible
+            setTimeout(() => {
+                // Hide items that should be hidden
+                itemsToHide.forEach(item => {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                });
+                
+                // Show and animate items that should be visible
+                itemsToShow.forEach((item, index) => {
+                    item.style.display = 'block';
+                    item.classList.remove('fade-out');
+                    
+                    // Stagger the animation for a smoother effect
+                    setTimeout(() => {
+                        item.classList.add('fade-in');
+                    }, index * 50);
+                });
+                
+                // Trigger AOS refresh for newly visible items
+                setTimeout(() => {
+                    if (typeof AOS !== 'undefined') {
+                        AOS.refresh();
+                    }
+                    resolve();
+                }, itemsToShow.length * 50 + 100);
+                
+            }, 250); // Reduced animation duration for snappier feel
+        });
     }
     
     // Portfolio Item Interactions
@@ -847,119 +784,7 @@ function initAboutUsTracking() {
         });
     }
     
-    // Track client logo interactions with enhanced functionality
-    document.querySelectorAll('.client-logo').forEach((logo, index) => {
-        // Add click tracking
-        logo.addEventListener('click', function() {
-            const clientName = this.querySelector('text')?.textContent || `Client ${index + 1}`;
-            trackEvent('client_logo_click', {
-                client: clientName,
-                position: index + 1
-            });
-            
-            // Add visual feedback
-            this.style.transform = 'translateY(-8px) scale(1.05)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-        });
-        
-        // Add hover analytics
-        logo.addEventListener('mouseenter', function() {
-            const clientName = this.querySelector('text')?.textContent || `Client ${index + 1}`;
-            trackEvent('client_logo_hover', {
-                client: clientName,
-                position: index + 1
-            });
-        });
-        
-        // Add intersection observer for animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = `${index * 0.1}s`;
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        observer.observe(logo);
-    });
-    
-    // Animated statistics counter
-    function animateStats() {
-        const statNumbers = document.querySelectorAll('.stat-number');
-        
-        statNumbers.forEach(stat => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const finalValue = target.textContent.replace(/[^\d]/g, '');
-                        const duration = 2000; // 2 seconds
-                        const increment = finalValue / (duration / 16); // 60fps
-                        let current = 0;
-                        
-                        const timer = setInterval(() => {
-                            current += increment;
-                            if (current >= finalValue) {
-                                current = finalValue;
-                                clearInterval(timer);
-                            }
-                            
-                            // Format the number with appropriate suffix
-                            let displayValue = Math.floor(current);
-                            if (target.textContent.includes('+')) {
-                                displayValue = displayValue + '+';
-                            }
-                            if (target.textContent.includes('%')) {
-                                displayValue = displayValue + '%';
-                            }
-                            if (target.textContent.includes('★')) {
-                                displayValue = (current / 10).toFixed(1) + '★';
-                            }
-                            
-                            target.textContent = displayValue;
-                        }, 16);
-                        
-                        observer.unobserve(target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            observer.observe(stat);
-        });
-    }
-    
-    // Initialize stats animation
-    animateStats();
-    
-    // Add parallax effect to clients section background
-    function initClientsParallax() {
-        const clientsSection = document.querySelector('.our-clients');
-        if (!clientsSection) return;
-        
-        window.addEventListener('scroll', throttle(() => {
-            const scrolled = window.pageYOffset;
-            const sectionTop = clientsSection.offsetTop;
-            const sectionHeight = clientsSection.offsetHeight;
-            const windowHeight = window.innerHeight;
-            
-            // Check if section is in viewport
-            if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
-                const parallaxSpeed = 0.5;
-                const yPos = -(scrolled - sectionTop) * parallaxSpeed;
-                
-                const beforeElement = clientsSection.querySelector('::before');
-                if (beforeElement) {
-                    beforeElement.style.transform = `translateY(${yPos}px)`;
-                }
-            }
-        }, 16));
-    }
-    
-    // Initialize parallax effect
-    initClientsParallax();
+
     
     // Track scroll depth
     let maxScroll = 0;
@@ -980,7 +805,6 @@ function initAboutUsTracking() {
             }
         }
     }, 1000));
-}
 
 /**
  * Track events (placeholder for analytics integration)
