@@ -732,16 +732,23 @@ function initAboutUsTracking() {
         const loadMoreBtn = document.querySelector('.load-more-btn');
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', function(e) {
-                // Don't prevent default - allow normal navigation
-                
+                // Track the event first
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'load_more_portfolio', {
                         'event_category': 'portfolio'
                     });
                 }
                 
-                // Allow normal navigation to portfolio.html
                 console.log('Navigating to portfolio page');
+                
+                // Ensure navigation works in all environments
+                const href = this.getAttribute('href');
+                if (href) {
+                    // For deployment environments, use window.location
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 100);
+                }
             });
         }
     }
