@@ -301,7 +301,7 @@ function showErrors(errors) {
         errorDiv = document.createElement('div');
         errorDiv.className = 'form-errors';
         errorDiv.style.cssText = `
-            background: #4A5FFF;
+            background: #2B4D9C;
             color: white;
             padding: 1rem;
             border-radius: 8px;
@@ -367,7 +367,7 @@ function showSuccess(message) {
     const successDiv = document.createElement('div');
     successDiv.className = 'success-message';
     successDiv.style.cssText = `
-        background: #6B73FF;
+        background: #202950;
         color: white;
         padding: 1rem;
         border-radius: 8px;
