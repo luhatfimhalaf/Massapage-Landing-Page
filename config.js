@@ -6,7 +6,7 @@
 window.MASSAPAGE_CONFIG = {
     // Booklet configuration
     booklet: {
-        url: 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view'
+        url: 'https://www.canva.com/design/DAGnQDoI9V0/eJ772H4JWPJixfe6ZjweNg/edit?utm_content=DAGnQDoI9V0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'
     }
 };
 

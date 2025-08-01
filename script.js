@@ -397,8 +397,8 @@ function initRemainingButtons() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Open booklet URL
-            const bookletUrl = 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view';
+            // Use the href attribute from the button instead of hardcoded URL
+            const bookletUrl = this.getAttribute('href') || 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view';
             window.open(bookletUrl, '_blank');
             
             // Track booklet view
@@ -413,8 +413,8 @@ function initRemainingButtons() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Open booklet URL
-            const bookletUrl = 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view';
+            // Use the href attribute from the button instead of hardcoded URL
+            const bookletUrl = this.getAttribute('href') || 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view';
             window.open(bookletUrl, '_blank');
             
             // Track booklet view
