@@ -1,0 +1,268 @@
+# BRIEF DESAIN UI/UX LANDING PAGE SASA KITCHEN
+
+## INFORMASI BISNIS
+**Nama Bisnis:** Sasa Kitchen
+**Lokasi:** Kabupaten Nganjuk, Jawa Timur
+**Produk Utama:** Catering Diet
+**Layanan Tambahan:** Konsultasi Program Diet
+**Target:** UMKM yang ingin meningkatkan penjualan online
+
+## ANALISIS TARGET AUDIENCE
+
+### Primary Audience:
+- **Demografi:** Wanita dan Pria usia 25-45 tahun
+- **Lokasi:** Nganjuk dan sekitarnya (radius 20km)
+- **Profil:** Pekerja kantoran, ibu rumah tangga, profesional muda
+- **Pain Points:** 
+  - Kesulitan mengatur pola makan sehat
+  - Tidak ada waktu memasak makanan diet
+  - Bingung memilih menu diet yang tepat
+  - Butuh panduan ahli untuk program diet
+
+### Secondary Audience:
+- Keluarga yang ingin hidup sehat
+- Orang dengan kondisi medis tertentu (diabetes, hipertensi)
+- Fitness enthusiast di Nganjuk
+
+## TUJUAN LANDING PAGE
+
+### Primary Goals:
+1. **Konversi Penjualan:** Meningkatkan order catering diet
+2. **Lead Generation:** Mendapatkan konsultasi diet berbayar
+3. **Brand Awareness:** Membangun kepercayaan sebagai ahli diet lokal
+
+### Secondary Goals:
+- Edukasi tentang pentingnya pola makan sehat
+- Membangun komunitas pelanggan loyal
+- Meningkatkan engagement media sosial
+
+## STRUKTUR HALAMAN & WIREFRAME
+
+### 1. HERO SECTION
+**Elemen Utama:**
+- **Headline:** "Wujudkan Tubuh Ideal dengan Catering Diet Sehat di Nganjuk"
+- **Sub-headline:** "Program diet terintegrasi dengan menu lezat, bergizi, dan diantar langsung ke rumah Anda"
+- **Hero Image:** Foto makanan diet yang menarik dengan owner Sasa Kitchen
+- **CTA Primary:** "Pesan Catering Diet Sekarang"
+- **CTA Secondary:** "Konsultasi Gratis"
+- **Trust Indicators:** "✓ 500+ Pelanggan Puas" "✓ Ahli Gizi Bersertifikat" "✓ Antar Gratis Nganjuk"
+
+### 2. PROBLEM & SOLUTION SECTION
+**Judul:** "Masalah Diet yang Sering Dialami"
+**Konten:**
+- Ikon + Deskripsi masalah umum (tidak ada waktu, bingung menu, tidak konsisten)
+- Transisi ke solusi Sasa Kitchen
+- Benefit utama: praktis, sehat, terpantau
+
+### 3. PRODUK & LAYANAN
+**A. Catering Diet**
+- **Paket Diet:** Keto, Mayo, Mediterania, Vegetarian
+- **Durasi:** 7 hari, 14 hari, 30 hari
+- **Harga:** Mulai dari Rp 75.000/hari
+- **Fitur:** 3x makan + 2x snack, kalori terhitung, menu bervariasi
+
+**B. Konsultasi Diet**
+- **Konsultasi Online:** Via WhatsApp/Zoom
+- **Paket:** Konsultasi + meal plan personal
+- **Harga:** Rp 150.000/sesi
+- **Benefit:** Program diet personal, monitoring progress
+
+### 4. MENU SHOWCASE
+**Layout:** Grid 3x2 dengan foto makanan berkualitas tinggi
+**Konten:**
+- Nama menu + kalori
+- Deskripsi singkat bahan
+- Label diet (Keto, Low Carb, dll)
+- Hover effect untuk detail nutrisi
+
+### 5. TESTIMONI & SOCIAL PROOF
+**Format:**
+- Foto before/after pelanggan (dengan izin)
+- Quote testimoni dengan nama dan lokasi
+- Rating bintang 5
+- Jumlah pelanggan yang sudah dilayani
+- Sertifikat/kredensial owner
+
+### 6. TENTANG SASA KITCHEN
+**Konten:**
+- Foto owner dengan background profesional
+- Cerita singkat passion di bidang nutrisi
+- Kredensial dan pengalaman
+- Visi misi membantu masyarakat Nganjuk hidup sehat
+
+### 7. AREA LAYANAN & PENGIRIMAN
+**Elemen:**
+- Peta coverage area Nganjuk
+- Jadwal pengiriman (2x sehari: pagi & sore)
+- Syarat dan ketentuan pengiriman
+- Kontak untuk area di luar coverage
+
+### 8. FAQ SECTION
+**Pertanyaan Umum:**
+- Bagaimana cara pemesanan?
+- Apakah makanan halal?
+- Bagaimana jika tidak cocok dengan menu?
+- Berapa lama program diet yang disarankan?
+- Apakah ada garansi hasil?
+
+### 9. CTA SECTION
+**Headline:** "Mulai Hidup Sehat Hari Ini!"
+**Dua Pilihan CTA:**
+- **Pesan Catering:** Langsung ke WhatsApp dengan template pesan
+- **Konsultasi Gratis:** Form lead capture untuk konsultasi
+
+### 10. FOOTER
+**Informasi:**
+- Kontak lengkap (WhatsApp, Instagram, alamat)
+- Jam operasional
+- Link kebijakan privasi
+- Social media links
+
+## DESAIN VISUAL
+
+### Color Palette:
+**Primary Colors:**
+- **Green (#2ECC71):** Kesehatan, natural, segar
+- **Orange (#F39C12):** Energi, semangat, appetite
+
+**Secondary Colors:**
+- **White (#FFFFFF):** Clean, minimalis
+- **Dark Gray (#2C3E50):** Teks, profesional
+- **Light Gray (#ECF0F1):** Background section
+
+### Typography:
+**Heading:** Poppins (Bold, Semi-bold)
+**Body Text:** Inter (Regular, Medium)
+**Accent:** Playfair Display (untuk quote testimoni)
+
+### Imagery Style:
+- **Foto Makanan:** High-quality, natural lighting, appetizing
+- **Foto Owner:** Professional, approachable, trustworthy
+- **Icons:** Outline style, konsisten dengan brand
+- **Illustrations:** Minimal, health-themed
+
+### Layout Principles:
+- **Mobile-first design**
+- **Generous white space**
+- **Clear visual hierarchy**
+- **Consistent spacing (8px grid system)**
+- **Accessibility compliant (WCAG 2.1)**
+
+## STRATEGI KONVERSI
+
+### Trust Building Elements:
+1. **Sertifikat Ahli Gizi** - Kredibilitas profesional
+2. **Testimoni Real** - Social proof dengan foto
+3. **Jaminan Kepuasan** - Risk reversal
+4. **Kontak Transparan** - Alamat dan nomor jelas
+5. **Portfolio Hasil** - Before/after transformasi
+
+### Psychological Triggers:
+1. **Scarcity:** "Slot terbatas untuk bulan ini"
+2. **Urgency:** "Promo berakhir dalam 3 hari"
+3. **Social Proof:** "500+ orang sudah merasakan manfaatnya"
+4. **Authority:** "Dipercaya ahli gizi bersertifikat"
+5. **Reciprocity:** "Konsultasi gratis untuk pemesanan pertama"
+
+### CTA Optimization:
+- **Warna Kontras:** Orange button pada background putih
+- **Action Words:** "Pesan Sekarang", "Mulai Diet", "Konsultasi Gratis"
+- **Benefit-focused:** "Dapatkan Tubuh Ideal dalam 30 Hari"
+- **Multiple CTAs:** Di hero, tengah, dan akhir halaman
+
+## TECHNICAL REQUIREMENTS
+
+### Performance:
+- **Loading Speed:** < 3 detik
+- **Mobile Responsive:** Semua device
+- **SEO Optimized:** Meta tags, structured data
+- **Analytics:** Google Analytics, Facebook Pixel
+
+### Integrations:
+- **WhatsApp Business API:** Auto-reply dan template
+- **Instagram Feed:** Showcase menu terbaru
+- **Google Maps:** Lokasi dan area layanan
+- **Payment Gateway:** Untuk konsultasi online
+
+### Content Management:
+- **Menu Updates:** Easy backend untuk update menu
+- **Testimoni Management:** Upload dan moderate testimoni
+- **Blog Section:** Tips diet dan artikel kesehatan
+
+## COPYWRITING GUIDELINES
+
+### Tone of Voice:
+- **Friendly & Approachable:** Tidak kaku, seperti teman
+- **Expert but Humble:** Menunjukkan keahlian tanpa sombong
+- **Motivational:** Memberikan semangat untuk hidup sehat
+- **Local Touch:** Menyebutkan Nganjuk, budaya lokal
+
+### Key Messages:
+1. **Praktis:** "Diet sehat tanpa ribet masak"
+2. **Terpercaya:** "Ahli gizi berpengalaman di Nganjuk"
+3. **Hasil Nyata:** "Turun 5kg dalam 30 hari"
+4. **Support Penuh:** "Konsultasi dan monitoring progress"
+5. **Lokal Pride:** "Bangga melayani masyarakat Nganjuk"
+
+### Content Pillars:
+1. **Educational:** Tips diet, info nutrisi
+2. **Inspirational:** Success stories, motivasi
+3. **Behind the Scenes:** Proses masak, quality control
+4. **Community:** Interaksi dengan pelanggan
+5. **Promotional:** Paket baru, diskon, event
+
+## METRICS & KPI
+
+### Primary Metrics:
+- **Conversion Rate:** Target 3-5%
+- **Cost Per Acquisition:** < Rp 50.000
+- **Average Order Value:** Rp 1.500.000 (paket 20 hari)
+- **Customer Lifetime Value:** Rp 3.000.000
+
+### Secondary Metrics:
+- **Bounce Rate:** < 40%
+- **Time on Page:** > 2 menit
+- **Social Shares:** 50+ per bulan
+- **Email Signups:** 100+ per bulan
+- **WhatsApp Inquiries:** 200+ per bulan
+
+## LAUNCH STRATEGY
+
+### Phase 1 - Soft Launch (Week 1-2):
+- **Testing:** A/B test headline dan CTA
+- **Feedback:** Dari 10 pelanggan existing
+- **Optimization:** Fix bugs dan improve UX
+
+### Phase 2 - Local Marketing (Week 3-4):
+- **Social Media:** Instagram dan Facebook ads
+- **Local SEO:** Google My Business optimization
+- **Word of Mouth:** Referral program
+
+### Phase 3 - Scale Up (Month 2+):
+- **Content Marketing:** Blog dan video tips diet
+- **Partnerships:** Kerjasama dengan gym lokal
+- **Expansion:** Pertimbangkan area sekitar Nganjuk
+
+## MAINTENANCE & UPDATES
+
+### Weekly Tasks:
+- Update menu dan harga
+- Upload testimoni baru
+- Posting blog artikel
+- Monitor dan respond inquiry
+
+### Monthly Tasks:
+- Analyze performance metrics
+- A/B test new elements
+- Update seasonal promotions
+- Backup dan security check
+
+### Quarterly Tasks:
+- Major design updates
+- New feature implementation
+- Competitor analysis
+- Customer satisfaction survey
+
+---
+
+**Catatan:** Brief ini dirancang khusus untuk Sasa Kitchen dengan mempertimbangkan karakteristik bisnis lokal di Nganjuk, target audience yang spesifik, dan tren industri catering diet saat ini. Implementasi harus disesuaikan dengan budget dan timeline yang tersedia.
